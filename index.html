@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Henri Linke — Ingénieur IA freelance · Apps, data & automatisation</title>
+<meta name="description" content="Agents IA, applications métier, data et automatisations pour les PME — de la spec à la prod, en autonomie." />
+
+<!-- Open Graph (aperçu lors du partage de lien) -->
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Henri Linke — Ingénieur IA freelance" />
+<meta property="og:description" content="Outils sur-mesure en production — IA, apps métier, data &amp; automatisations. De la spec au déploiement." />
+<meta property="og:locale" content="fr_FR" />
+<meta property="og:image" content="assets/og-cover.png" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="Henri Linke — Ingénieur IA freelance. Apps, data & automatisations, de la spec à la prod." />
+
+<!-- Twitter / X — grande carte d'aperçu -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Henri Linke — Ingénieur IA freelance" />
+<meta name="twitter:description" content="Outils sur-mesure en production — IA, apps métier, data & automatisations. De la spec au déploiement." />
+<meta name="twitter:image" content="assets/og-cover.png" />
+
+<!-- Quand le domaine sera fixé : ajouter <link rel="canonical"> + <meta property="og:url">, et passer og:image / twitter:image en URL ABSOLUE (https://domaine/assets/og-cover.png) pour un aperçu fiable partout. -->
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%234338ca'/><text x='50' y='72' font-size='62' font-family='monospace' font-weight='bold' fill='white' text-anchor='middle'>H</text></svg>" />
+
+<!-- Coordonnées vérifiées pour publication (13/06/2026). -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+
+<style>
+  :root {
+    --bg: #faf8f5;
+    --bg-soft: #f2eee7;
+    --surface: #ffffff;
+    --ink: #17150f;
+    --ink-soft: #5f574a;
+    --line: #e6e0d6;
+    --accent: #4338ca;
+    --accent-bright: #5b50e6;
+    --accent-wash: #ecebfb;
+    --dark: #14130f;
+    --dark-soft: #221f18;
+
+    --maxw: 1080px;
+    --radius: 14px;
+    --radius-lg: 22px;
+    --space-section: clamp(4.5rem, 3rem + 7vw, 9rem);
+
+    --text-hero: clamp(2.6rem, 1.1rem + 6.2vw, 5.4rem);
+    --text-h2: clamp(1.7rem, 1.1rem + 2.2vw, 2.7rem);
+    --text-lead: clamp(1.05rem, 0.95rem + 0.5vw, 1.3rem);
+
+    --ease: cubic-bezier(0.16, 1, 0.3, 1);
+    --dur: 480ms;
+
+    --font-display: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+    --font-body: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
+    --font-mono: ui-monospace, 'SF Mono', 'Cascadia Code', Menlo, monospace;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.6;
+    font-size: 1.0625rem;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  /* subtle paper grain via gradient, compositor-friendly, no asset */
+  body::before {
+    content: "";
+    position: fixed; inset: 0;
+    pointer-events: none; z-index: 0;
+    background:
+      radial-gradient(1200px 600px at 85% -10%, var(--accent-wash), transparent 60%),
+      radial-gradient(900px 500px at -10% 10%, #fbf4ea, transparent 55%);
+    opacity: 0.9;
+  }
+
+  .wrap { width: 100%; max-width: var(--maxw); margin-inline: auto; padding-inline: clamp(1.25rem, 5vw, 2.5rem); position: relative; z-index: 1; }
+
+  a { color: inherit; text-decoration: none; }
+  ::selection { background: var(--accent); color: #fff; }
+
+  :focus-visible { outline: 2.5px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+
+  h1, h2, h3 { font-family: var(--font-display); font-weight: 600; line-height: 1.05; letter-spacing: -0.02em; }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--accent); font-weight: 500;
+    display: inline-flex; align-items: center; gap: 0.6rem;
+  }
+  .eyebrow::before { content: ""; width: 26px; height: 1.5px; background: var(--accent); display: inline-block; }
+
+  /* ---------- NAV ---------- */
+  header.nav {
+    position: sticky; top: 0; z-index: 50;
+    backdrop-filter: saturate(180%) blur(12px);
+    background: color-mix(in srgb, var(--bg) 82%, transparent);
+    border-bottom: 1px solid transparent;
+    transition: border-color var(--dur) var(--ease);
+  }
+  header.nav.scrolled { border-bottom-color: var(--line); }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; padding-block: 1rem; }
+  .brand { font-family: var(--font-display); font-weight: 700; letter-spacing: -0.02em; font-size: 1.1rem; }
+  .brand span { color: var(--accent); }
+  .nav-links { display: flex; gap: 2rem; align-items: center; }
+  .nav-links a.link { font-size: 0.95rem; color: var(--ink-soft); font-weight: 500; transition: color 0.2s; }
+  .nav-links a.link:hover { color: var(--ink); }
+  .btn {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: var(--accent); color: #fff; font-weight: 600; font-size: 0.95rem;
+    padding: 0.65rem 1.15rem; border-radius: 100px;
+    transition: transform 0.2s var(--ease), background 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 14px -4px color-mix(in srgb, var(--accent) 60%, transparent);
+  }
+  .btn:hover { background: var(--accent-bright); transform: translateY(-2px); box-shadow: 0 10px 24px -8px color-mix(in srgb, var(--accent) 70%, transparent); }
+  .btn.ghost { background: transparent; color: var(--ink); border: 1.5px solid var(--line); box-shadow: none; }
+  .btn.ghost:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+
+  /* menu mobile : disclosure natif (fonctionne sans JS) */
+  .nav-menu { display: none; position: relative; }
+  .nav-menu summary { list-style: none; cursor: pointer; display: inline-flex; align-items: center; gap: 0.55rem; font-size: 0.95rem; font-weight: 600; color: var(--ink); padding: 0.5rem 0.3rem; }
+  .nav-menu summary::-webkit-details-marker { display: none; }
+  .nav-menu .bars { width: 18px; height: 2px; background: var(--ink); border-radius: 2px; position: relative; display: block; }
+  .nav-menu .bars::before, .nav-menu .bars::after { content: ""; position: absolute; left: 0; width: 18px; height: 2px; background: var(--ink); border-radius: 2px; }
+  .nav-menu .bars::before { top: -6px; }
+  .nav-menu .bars::after { top: 6px; }
+  .nav-menu-panel { position: absolute; right: 0; top: calc(100% + 0.7rem); background: var(--surface); border: 1px solid var(--line); border-radius: 14px; box-shadow: 0 18px 40px -20px rgba(20,19,15,0.4); padding: 0.5rem; display: flex; flex-direction: column; min-width: 210px; }
+  .nav-menu-panel a { padding: 0.7rem 0.85rem; border-radius: 9px; font-size: 0.98rem; font-weight: 500; color: var(--ink); }
+  .nav-menu-panel a:hover, .nav-menu-panel a:focus-visible { background: var(--bg-soft); color: var(--accent); }
+  @media (max-width: 720px) {
+    .nav-links { display: none; }
+    .nav-menu { display: block; }
+  }
+
+  /* ---------- HERO ---------- */
+  .hero { padding-top: clamp(3.5rem, 2rem + 8vw, 7rem); padding-bottom: var(--space-section); }
+  .status {
+    display: inline-flex; align-items: center; gap: 0.55rem;
+    font-size: 0.85rem; font-weight: 500; color: var(--ink-soft);
+    background: var(--surface); border: 1px solid var(--line);
+    padding: 0.4rem 0.85rem; border-radius: 100px; margin-bottom: 1.8rem;
+  }
+  .dot { width: 8px; height: 8px; border-radius: 50%; background: #2faa5e; box-shadow: 0 0 0 0 rgba(47,170,94,0.5); animation: pulse 2.4s infinite; }
+  @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(47,170,94,0.45);} 70% { box-shadow: 0 0 0 8px rgba(47,170,94,0);} 100% { box-shadow: 0 0 0 0 rgba(47,170,94,0);} }
+  @media (prefers-reduced-motion: reduce) { .dot { animation: none; } }
+
+  .hero h1 { font-size: var(--text-hero); font-weight: 700; max-width: 16ch; }
+  .hero h1 .hl { color: var(--accent); }
+  .hero .lead { font-size: var(--text-lead); color: var(--ink-soft); max-width: 56ch; margin-top: 1.6rem; }
+  .hero-cta { display: flex; flex-wrap: wrap; gap: 0.85rem; margin-top: 2.4rem; }
+
+  .hero-meta { display: flex; flex-wrap: wrap; gap: 1.8rem 2.6rem; margin-top: 3.4rem; padding-top: 2.2rem; border-top: 1px solid var(--line); }
+  .hero-meta div { display: flex; flex-direction: column; gap: 0.15rem; }
+  .hero-meta .k { font-family: var(--font-display); font-weight: 600; font-size: 1.45rem; }
+  .hero-meta .v { font-size: 0.85rem; color: var(--ink-soft); }
+
+  /* ---------- SECTIONS ---------- */
+  section { padding-block: var(--space-section); }
+  .sec-head { max-width: 60ch; margin-bottom: 3.2rem; }
+  .sec-head h2 { font-size: var(--text-h2); margin-top: 1rem; }
+  .sec-head p { color: var(--ink-soft); margin-top: 1rem; font-size: 1.1rem; }
+
+  /* services */
+  .services { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.4rem; }
+  .svc {
+    background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-lg);
+    padding: 2rem 1.9rem; transition: transform 0.3s var(--ease), box-shadow 0.3s, border-color 0.3s;
+    position: relative; overflow: hidden;
+  }
+  .svc:hover { transform: translateY(-5px); box-shadow: 0 22px 50px -28px rgba(20,19,15,0.4); border-color: color-mix(in srgb, var(--accent) 40%, var(--line)); }
+  .svc h3 { font-size: 1.35rem; margin: 0 0 0.7rem; }
+  .svc p { color: var(--ink-soft); font-size: 0.98rem; }
+  .svc .for { margin-top: 1.2rem; font-size: 0.85rem; color: var(--ink-soft); }
+  .svc .for b { color: var(--ink); font-weight: 600; }
+
+  /* case studies */
+  .cases { display: grid; gap: 1.4rem; }
+  .case {
+    background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-lg);
+    padding: clamp(1.6rem, 1rem + 2vw, 2.6rem);
+    display: grid; grid-template-columns: 1.1fr 1fr; gap: 2rem 3rem; align-items: start;
+    transition: box-shadow 0.3s, border-color 0.3s;
+  }
+  .case:hover { box-shadow: 0 22px 50px -30px rgba(20,19,15,0.35); border-color: color-mix(in srgb, var(--accent) 35%, var(--line)); }
+  .case.feature { background: linear-gradient(135deg, #fff, var(--accent-wash)); border-color: color-mix(in srgb, var(--accent) 30%, var(--line)); }
+  .case .tag { font-family: var(--font-mono); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.14em; color: var(--accent); }
+  .case h3 { font-size: 1.5rem; margin: 0.7rem 0 1rem; }
+  .case .desc { color: var(--ink-soft); font-size: 0.98rem; text-align: justify; text-justify: inter-word; hyphens: auto; }
+  /* éviter les "rivières" sur colonne étroite : on repasse en aligné à gauche sous 560px */
+  @media (max-width: 560px) { .case .desc { text-align: left; hyphens: manual; } }
+  .case .result {
+    background: var(--bg-soft); border-left: 3px solid var(--accent); border-radius: 0 10px 10px 0;
+    padding: 0.9rem 1.1rem; font-size: 0.95rem; margin-top: 0.4rem;
+  }
+  .case .result b { color: var(--ink); }
+  .case .rlabel { font-family: var(--font-mono); font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.14em; color: var(--ink-soft); display: block; margin-bottom: 0.3rem; }
+  .stack { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.3rem; }
+  .stack span { font-family: var(--font-mono); font-size: 0.78rem; color: var(--ink-soft); background: var(--bg-soft); border: 1px solid var(--line); padding: 0.3rem 0.65rem; border-radius: 7px; }
+  @media (max-width: 760px) { .case { grid-template-columns: 1fr; gap: 1.4rem; } }
+
+  /* live badge + lien projet en ligne */
+  .live {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    font-family: var(--font-mono); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em;
+    color: #1d7a45; background: #e7f6ec; border: 1px solid #bfe6cc;
+    padding: 0.25rem 0.6rem; border-radius: 100px; margin-left: 0.6rem; vertical-align: middle;
+  }
+  .live::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: #2faa5e; }
+  .visit {
+    display: inline-flex; align-items: center; gap: 0.45rem;
+    font-weight: 600; font-size: 0.92rem; color: var(--accent);
+    margin-top: 1.1rem; transition: gap 0.2s var(--ease);
+  }
+  .visit:hover { gap: 0.75rem; }
+
+  /* captures d'écran dans les études de cas */
+  .case .media {
+    grid-column: 1 / -1; margin: 0.4rem 0 0;
+  }
+  .case .media a { display: block; border-radius: 12px; overflow: hidden; border: 1px solid var(--line); box-shadow: 0 10px 30px -18px rgba(20,19,15,0.35); transition: transform 0.3s var(--ease), box-shadow 0.3s; }
+  .case .media a:hover { transform: translateY(-3px); box-shadow: 0 18px 40px -20px rgba(20,19,15,0.45); }
+  .case .media img { width: 100%; height: auto; display: block; }
+  .case .media figcaption { font-size: 0.82rem; color: var(--ink-soft); margin-top: 0.6rem; font-family: var(--font-mono); }
+
+  /* skills */
+  .skills { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.4rem; }
+  .skillcol h3 { font-size: 1rem; font-family: var(--font-body); font-weight: 600; color: var(--accent); margin-bottom: 0.9rem; }
+  .skillcol ul { list-style: none; display: flex; flex-direction: column; gap: 0.55rem; }
+  .skillcol li { font-size: 0.95rem; color: var(--ink-soft); padding-left: 1.1rem; position: relative; }
+  .skillcol li::before { content: "→"; position: absolute; left: 0; color: var(--accent); }
+
+  /* path */
+  .path { display: grid; gap: 0; }
+  .step { display: grid; grid-template-columns: 160px 1fr; gap: 2rem; padding: 1.5rem 0; border-top: 1px solid var(--line); }
+  .step:last-child { border-bottom: 1px solid var(--line); }
+  .step .when { font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent); padding-top: 0.2rem; }
+  .step h3 { font-size: 1.15rem; font-family: var(--font-body); font-weight: 600; }
+  .step p { color: var(--ink-soft); font-size: 0.95rem; margin-top: 0.3rem; }
+  @media (max-width: 620px) { .step { grid-template-columns: 1fr; gap: 0.4rem; } }
+
+  /* contact band */
+  .contact { background: var(--dark); color: #f3efe7; border-radius: clamp(20px, 3vw, 34px); margin-bottom: var(--space-section); position: relative; overflow: hidden; }
+  .contact::after { content: ""; position: absolute; inset: 0; background: radial-gradient(700px 360px at 80% 120%, color-mix(in srgb, var(--accent) 55%, transparent), transparent 70%); pointer-events: none; }
+  .contact-body { padding: clamp(3.5rem, 2rem + 6vw, 6rem) clamp(1.5rem, 4vw, 3rem); position: relative; z-index: 1; }
+  .contact h2 { font-size: var(--text-h2); max-width: 18ch; }
+  .contact p { color: #c7bfb2; margin-top: 1.2rem; max-width: 52ch; font-size: 1.1rem; }
+  .contact-grid { display: flex; flex-wrap: wrap; gap: 1rem 1.2rem; margin-top: 2.6rem; }
+  .cc { display: inline-flex; align-items: center; gap: 0.7rem; background: var(--dark-soft); border: 1px solid #322d23; padding: 0.85rem 1.2rem; border-radius: 12px; font-weight: 500; transition: border-color 0.25s, transform 0.25s, background 0.25s; }
+  .cc:hover { border-color: var(--accent-bright); transform: translateY(-2px); background: #2a261d; }
+  .cc .ic { color: var(--accent-bright); display: inline-flex; }
+  /* canal principal : le mail, en bouton plein accent */
+  .cc.primary { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 600; box-shadow: 0 6px 20px -6px color-mix(in srgb, var(--accent) 70%, transparent); }
+  .cc.primary:hover { background: var(--accent-bright); border-color: var(--accent-bright); }
+  .cc.primary .ic { color: #fff; }
+  .contact .loc { margin-top: 1.8rem; font-size: 0.9rem; color: #9a9182; }
+
+  footer { padding-block: 2.5rem; border-top: 1px solid var(--line); color: var(--ink-soft); font-size: 0.88rem; }
+  .foot-inner { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; }
+
+  /* reveal on scroll — content stays visible if JS/reduced-motion off */
+  .js .reveal { opacity: 0; transform: translateY(22px); transition: opacity var(--dur) var(--ease), transform var(--dur) var(--ease); }
+  .js .reveal.in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) { .js .reveal { opacity: 1; transform: none; transition: none; } }
+</style>
+</head>
+<body>
+<script>document.documentElement.classList.add('js');</script>
+
+<header class="nav" id="nav">
+  <div class="wrap nav-inner">
+    <a href="#top" class="brand">Henri&nbsp;<span>Linke</span></a>
+    <nav class="nav-links" aria-label="Navigation principale">
+      <a class="link" href="#services">Ce que je fais</a>
+      <a class="link" href="#cases">Réalisations</a>
+      <a class="link" href="#skills">Compétences</a>
+      <a class="btn" href="#contact">Me contacter</a>
+    </nav>
+    <details class="nav-menu" id="navMenu">
+      <summary aria-label="Ouvrir le menu de navigation"><span class="bars" aria-hidden="true"></span> Menu</summary>
+      <div class="nav-menu-panel">
+        <a href="#services">Ce que je fais</a>
+        <a href="#cases">Réalisations</a>
+        <a href="#skills">Compétences</a>
+        <a href="#contact">Me contacter</a>
+      </div>
+    </details>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero" aria-labelledby="hero-h">
+    <div class="wrap">
+      <div class="status reveal"><span class="dot" aria-hidden="true"></span> Disponible pour de nouvelles missions</div>
+      <h1 id="hero-h" class="reveal">Je mets des <span class="hl">outils sur-mesure</span> au travail dans vos process.</h1>
+      <p class="lead reveal">Ingénieur IA freelance. Agents IA, applications métier, data et automatisations — conçus pour votre métier, de la spec à la prod, en autonomie.</p>
+      <div class="hero-cta reveal">
+        <a class="btn" href="#contact">Discuter d'un projet</a>
+        <a class="btn ghost" href="#cases">Voir mes réalisations</a>
+      </div>
+      <div class="hero-meta reveal">
+        <div><span class="k">4 ans</span><span class="v">d'expérience en IA & Data</span></div>
+        <div><span class="k">A → Z</span><span class="v">de la spec au déploiement</span></div>
+        <div><span class="k">Python</span><span class="v">LangGraph · RAG · Django · n8n</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services" aria-labelledby="services-h">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow">Ce que je fais</span>
+        <h2 id="services-h">Des outils sur-mesure pour vos process qui bloquent.</h2>
+        <p>Pas des produits tout faits. Des applications, des automatisations et de l'IA — seulement quand chaque couche apporte un vrai gain.</p>
+      </div>
+      <div class="services">
+        <article class="svc reveal">
+          <h3>Applications & workflows métier</h3>
+          <p>Quand vos équipes jonglent entre Excel, saisies manuelles et outils qui ne se parlent pas, je construis l'outil qui manque : imports, calculs, tableaux de bord, génération de documents, logique multi-sites. Déployé en production, testé, maintenable.</p>
+          <p class="for"><b>Pour</b> : PME et éditeurs avec des process internes critiques (stock, reporting, ops multi-sites).</p>
+        </article>
+        <article class="svc reveal">
+          <h3>Assistants documentaires & RAG</h3>
+          <p>Votre support, vos procédures et votre doc produit sont éparpillés et difficiles à fouiller ? Je centralise tout dans un portail à jour, avec une recherche instantanée et un assistant IA qui répond en citant ses sources — et qui dit honnêtement quand il ne sait pas.</p>
+          <p class="for"><b>Pour</b> : éditeurs de logiciels, équipes support et SAV avec beaucoup de documentation ou de questions récurrentes.</p>
+        </article>
+        <article class="svc reveal">
+          <h3>Automatisation de flux de contenu et de workflows</h3>
+          <p>J'automatise les flux qui sont encore manuels (synchronisation de documentation, enrichissement de fiches produits avec optimisation GEO, génération de rapports ou de documents, etc.) et j'y ajoute une couche intelligente quand c'est utile.</p>
+          <p class="for"><b>Pour</b> : toute PME qui a des processus de contenu, de reporting ou de transfert de données qui traînent.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- CASES -->
+  <section id="cases" aria-labelledby="cases-h">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow">Réalisations</span>
+        <h2 id="cases-h">Des projets livrés, en production.</h2>
+        <p>À chaque fois : un besoin métier réel, un outil construit et déployé en autonomie.</p>
+      </div>
+      <div class="cases">
+
+        <article class="case feature reveal">
+          <div>
+            <span class="tag">Système complet IA & RAG</span><span class="live">En ligne</span>
+            <h3>Système de documentation & assistant IA — KerAwen</h3>
+            <p class="desc">Pour KerAwen, j'ai conçu et déployé <b>tout le système documentaire de support, de bout en bout</b>. Le contenu rédigé dans Notion est synchronisé automatiquement vers un portail public de documentation. Une recherche par mots-clés permet de retrouver la bonne information en quelques secondes. Un assistant IA (RAG), alimenté par une base vectorielle, répond directement aux questions en citant ses sources — et signale honnêtement quand il ne sait pas. Le tout pour un éditeur de logiciel de caisse pour commerçants PrestaShop (magasins physiques + e-commerce).</p>
+            <div class="stack"><span>Python</span><span>RAG</span><span>LLM (OpenAI)</span><span>Qdrant</span><span>Typesense</span><span>Docusaurus</span><span>Docker</span><span>VPS</span></div>
+            <a class="visit" href="https://support.kerawen.com" target="_blank" rel="noopener">Essayer en ligne — support.kerawen.com <span aria-hidden="true">→</span></a>
+          </div>
+          <div class="result">
+            <span class="rlabel">Résultat</span>
+            Tout le système est <b>en production</b>, utilisé quotidiennement par les clients : recherche pertinente en <b>3 à 6 secondes</b> et réponses de l'assistant <b>avec citation des sources</b>, 24/7.
+          </div>
+          <figure class="media">
+            <svg viewBox="0 0 760 430" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="kwArchiT kwArchiD" style="width:100%;height:auto;display:block;border-radius:12px;border:1px solid var(--line);box-shadow:0 10px 30px -18px rgba(20,19,15,0.35);" font-family="'Inter', ui-sans-serif, system-ui, sans-serif">
+              <title id="kwArchiT">Architecture du portail documentaire et de l'assistant IA, de bout en bout</title>
+              <desc id="kwArchiD">Notion comme contenu source, synchronisé vers un portail public de documentation, indexé pour une recherche par mots-clés, puis exploité par un assistant IA RAG sur base vectorielle qui répond avec citations. Conçu, développé et déployé en autonomie : Python, Docker, VPS, CI/CD.</desc>
+              <defs>
+                <marker id="kwAh" markerWidth="9" markerHeight="9" refX="6.5" refY="3" orient="auto"><path d="M0,0 L6.5,3 L0,6 Z" fill="#8a8070"/></marker>
+              </defs>
+              <rect x="0" y="0" width="760" height="430" rx="22" fill="#faf8f5"/>
+              <text x="36" y="42" font-family="ui-monospace, monospace" font-size="12" letter-spacing="2.2" fill="#4338ca" font-weight="600">PORTAIL DOC + ASSISTANT IA — DE A À Z</text>
+              <line x1="176" y1="150" x2="214" y2="150" stroke="#8a8070" stroke-width="1.6" marker-end="url(#kwAh)"/>
+              <line x1="360" y1="150" x2="398" y2="150" stroke="#8a8070" stroke-width="1.6" marker-end="url(#kwAh)"/>
+              <line x1="544" y1="150" x2="582" y2="150" stroke="#8a8070" stroke-width="1.6" marker-end="url(#kwAh)"/>
+              <text x="195" y="140" text-anchor="middle" font-family="ui-monospace, monospace" font-size="10.5" fill="#8a8070">sync</text>
+              <text x="379" y="140" text-anchor="middle" font-family="ui-monospace, monospace" font-size="10.5" fill="#8a8070">index</text>
+              <text x="563" y="140" text-anchor="middle" font-family="ui-monospace, monospace" font-size="10.5" fill="#8a8070">RAG</text>
+              <rect x="34" y="102" width="142" height="96" rx="14" fill="#ffffff" stroke="#e6e0d6" stroke-width="1.5"/>
+              <text x="50" y="128" font-family="ui-monospace, monospace" font-size="11" fill="#4338ca">01</text>
+              <text x="105" y="156" text-anchor="middle" font-size="17" font-weight="700" fill="#17150f" font-family="'Space Grotesk', ui-sans-serif, sans-serif">Notion</text>
+              <text x="105" y="178" text-anchor="middle" font-size="11.5" fill="#5f574a">Contenu source</text>
+              <rect x="218" y="102" width="142" height="96" rx="14" fill="#ffffff" stroke="#e6e0d6" stroke-width="1.5"/>
+              <text x="234" y="128" font-family="ui-monospace, monospace" font-size="11" fill="#4338ca">02</text>
+              <text x="289" y="156" text-anchor="middle" font-size="17" font-weight="700" fill="#17150f" font-family="'Space Grotesk', ui-sans-serif, sans-serif">Portail doc</text>
+              <text x="289" y="178" text-anchor="middle" font-size="11.5" fill="#5f574a" textLength="124" lengthAdjust="spacingAndGlyphs">Portail public · sync auto</text>
+              <rect x="402" y="102" width="142" height="96" rx="14" fill="#ecebfb" stroke="#4338ca" stroke-width="1.5"/>
+              <text x="418" y="128" font-family="ui-monospace, monospace" font-size="11" fill="#4338ca">03</text>
+              <text x="473" y="156" text-anchor="middle" font-size="17" font-weight="700" fill="#17150f" font-family="'Space Grotesk', ui-sans-serif, sans-serif">Recherche</text>
+              <text x="473" y="178" text-anchor="middle" font-size="11.5" fill="#3b338f" textLength="124" lengthAdjust="spacingAndGlyphs">Par mots-clés · instantané</text>
+              <rect x="586" y="102" width="142" height="96" rx="14" fill="#4338ca" stroke="#4338ca" stroke-width="1.5"/>
+              <text x="602" y="128" font-family="ui-monospace, monospace" font-size="11" fill="#c7c2f5">04</text>
+              <text x="657" y="156" text-anchor="middle" font-size="17" font-weight="700" fill="#ffffff" font-family="'Space Grotesk', ui-sans-serif, sans-serif">Assistant IA</text>
+              <text x="657" y="178" text-anchor="middle" font-size="11.5" fill="#d7d3f7">RAG · base vectorielle</text>
+              <rect x="34" y="246" width="694" height="150" rx="18" fill="#ffffff" stroke="#e6e0d6" stroke-width="1.5"/>
+              <rect x="34" y="246" width="6" height="150" rx="3" fill="#4338ca"/>
+              <text x="64" y="288" font-family="ui-monospace, monospace" font-size="11" letter-spacing="2" fill="#4338ca" font-weight="600">A → Z</text>
+              <text x="64" y="318" font-size="20" font-weight="700" fill="#17150f" font-family="'Space Grotesk', ui-sans-serif, sans-serif">Toute la chaîne, construite en autonomie.</text>
+              <text x="64" y="344" font-size="13" fill="#5f574a">De la spécification à la mise en production — seul aux commandes.</text>
+              <g font-family="ui-monospace, monospace" font-size="12" fill="#5f574a">
+                <rect x="64" y="360" width="74" height="24" rx="7" fill="#faf8f5" stroke="#e6e0d6"/><text x="101" y="376" text-anchor="middle">Python</text>
+                <rect x="146" y="360" width="74" height="24" rx="7" fill="#faf8f5" stroke="#e6e0d6"/><text x="183" y="376" text-anchor="middle">Docker</text>
+                <rect x="228" y="360" width="96" height="24" rx="7" fill="#faf8f5" stroke="#e6e0d6"/><text x="276" y="376" text-anchor="middle">VPS Linux</text>
+                <rect x="332" y="360" width="68" height="24" rx="7" fill="#faf8f5" stroke="#e6e0d6"/><text x="366" y="376" text-anchor="middle">CI/CD</text>
+                <rect x="408" y="360" width="78" height="24" rx="7" fill="#faf8f5" stroke="#e6e0d6"/><text x="447" y="376" text-anchor="middle">OpenAI</text>
+              </g>
+            </svg>
+            <figcaption>Vue d’ensemble — l’architecture complète de bout en bout. Le contenu Notion est synchronisé automatiquement, retrouvable par mots-clés et exploité par l’assistant IA. Conçu, développé et déployé en autonomie — seul aux commandes.</figcaption>
+          </figure>
+          <figure class="media">
+            <a href="https://support.kerawen.com" target="_blank" rel="noopener" aria-label="Voir la recherche du portail en ligne sur support.kerawen.com">
+              <img src="assets/kerawen-search.webp" alt="La recherche du portail KerAwen affichant des résultats surlignés et l'option Demander à l'assistant IA" width="1440" height="900" loading="lazy" />
+            </a>
+            <figcaption>Le détail — la recherche par mots-clés en production : résultats surlignés + accès direct à l'assistant IA.</figcaption>
+          </figure>
+          <figure class="media">
+            <a href="https://support.kerawen.com" target="_blank" rel="noopener" aria-label="Voir l'assistant IA en ligne sur support.kerawen.com">
+              <img src="assets/kerawen-ai.webp" alt="L'assistant IA KerAwen répondant à une question sur les remboursements, avec mise en forme et citations de sources cliquables" width="1440" height="900" loading="lazy" />
+            </a>
+            <figcaption>Le détail — l'assistant IA en production : réponse structurée, sources citées. Testez-le sur support.kerawen.com</figcaption>
+          </figure>
+        </article>
+
+        <article class="case reveal">
+          <div>
+            <span class="tag">Automatisation de workflows métier</span>
+            <h3>SaaS de gestion de stock multi-magasins</h3>
+            <p class="desc">Réponse sur-mesure à un besoin métier qui manquait au client : répartir le stock entre plusieurs points de vente. L'application ingère les stocks et les ventes de chaque magasin (import CSV/Excel), calcule pour chaque produit une répartition cible selon les ventes et signale les déséquilibres magasin par magasin (rupture, sur-stock). Elle propose alors les transferts à effectuer et génère des <b>bons de transfert PDF prêts à imprimer</b>, entièrement paramétrables (colonnes, tri, regroupement par route ou par magasin émetteur). Conçue et déployée de A à Z en autonomie : Django, dockerisée, 116 tests, gestion des déclinaisons produit, rôles et accès par société.</p>
+            <div class="stack"><span>Python</span><span>Django</span><span>PostgreSQL</span><span>Docker</span><span>Génération PDF</span><span>116 tests</span></div>
+          </div>
+          <div class="result">
+            <span class="rlabel">Résultat</span>
+            Développée rapidement, elle a permis au client de <b>décrocher un client majeur</b> qu'il n'aurait pas pu servir sans cette capacité d'automatisation de workflows multi-magasins.
+          </div>
+          <figure class="media">
+            <img src="assets/stock-dashboard.webp" alt="Tableau de bord multi-magasins : matrice produits par magasin avec états colorés (critique, optimal, excédent), ventes par jour, couverture en jours et déficits à rééquilibrer" width="1440" height="900" loading="lazy" />
+            <figcaption>Le tableau de bord : pour chaque produit et chaque magasin, l'état du stock (de « critique » à « excédent »), la vélocité des ventes, la couverture en jours et les transferts à effectuer.</figcaption>
+          </figure>
+          <figure class="media">
+            <img src="assets/stock-rapports.webp" alt="Écran de paramétrage des bons de transfert PDF : colonnes sélectionnables et réordonnables, mode de génération par route ou par magasin, tri configurable" width="1440" height="900" loading="lazy" />
+            <figcaption>Exemple du niveau de personnalisation : chaque format de bon de transfert PDF se compose librement (colonnes, tri, regroupement par route ou par émetteur).</figcaption>
+          </figure>
+        </article>
+
+        <article class="case reveal">
+          <div>
+            <span class="tag">Système multi-agents</span>
+            <h3>Analyse d'investissement multi-agents</h3>
+            <p class="desc">Produire un conseil synthétique à partir de données dispersées. J'ai orchestré 4 agents spécialisés (actualité/sentiment, quantitatif, stratégie, synthèse) avec LangGraph. Les compétences en orchestration d'agents, raisonnement multi-étapes et intégration d'outils se transposent directement aux agents pour processus métier concrets chez les PME.</p>
+            <div class="stack"><span>Python</span><span>LangGraph</span><span>APIs financières</span></div>
+          </div>
+          <div class="result">
+            <span class="rlabel">Résultat</span>
+            Analyse de portefeuille automatisée (VaR, Sharpe, drawdown) débouchant sur un conseil actionnable. <em>Projet personnel de R&D agentique.</em>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills" aria-labelledby="skills-h">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow">Compétences</span>
+        <h2 id="skills-h">Une stack complète, du modèle à la prod.</h2>
+      </div>
+      <div class="skills">
+        <div class="skillcol reveal">
+          <h3>IA générative & LLM</h3>
+          <ul><li>Agents autonomes & multi-agents (LangGraph)</li><li>RAG, embeddings, recherche hybride</li><li>OpenAI API, LangChain</li><li>Prompt engineering</li></ul>
+        </div>
+        <div class="skillcol reveal">
+          <h3>Développement</h3>
+          <ul><li>Python, SQL</li><li>Django, FastAPI</li><li>React / Node.js</li><li>Tests (Pytest, Playwright)</li></ul>
+        </div>
+        <div class="skillcol reveal">
+          <h3>Automatisation & MLOps</h3>
+          <ul><li>n8n, scripts sur-mesure</li><li>Docker, administration VPS Linux</li><li>CI/CD (GitLab)</li><li>Déploiement & mise en production</li></ul>
+        </div>
+        <div class="skillcol reveal">
+          <h3>Data & ML</h3>
+          <ul><li>Spark, HDFS, PySpark</li><li>Pandas, NumPy, Scikit-learn</li><li>NLP</li><li>Qdrant, Typesense, PostgreSQL</li></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PATH -->
+  <section id="path" aria-labelledby="path-h">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow">Parcours</span>
+        <h2 id="path-h">D'où je viens.</h2>
+      </div>
+      <div class="path">
+        <div class="step reveal"><div class="when">2025 →</div><div><h3>Ingénieur IA & Innovation — Freelance / Kerawen</h3><p>Agent de support client RAG en production, industrialisation (tests, Docker, VPS), refonte de la documentation technique.</p></div></div>
+        <div class="step reveal"><div class="when">2021 — 2023</div><div><h3>Développeur Big Data — Capgemini (ASP)</h3><p>Poste en alternance, dans le cadre de ma formation d'ingénieur IA. Data lake HDFS, automatisation du contrôle qualité des données, livraison Agile en CI/CD.</p></div></div>
+        <div class="step reveal"><div class="when">2021 — 2024</div><div><h3>Ingénieur en Intelligence Artificielle — CentraleSupélec / OpenClassrooms</h3><p>Formation en alternance (chez Capgemini). Précédée d'une CPGE MPSI/MP.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" aria-labelledby="contact-h">
+    <div class="wrap">
+      <div class="contact reveal">
+        <div class="contact-body">
+          <span class="eyebrow" style="--accent: var(--accent-bright); color: var(--accent-bright);">Contact</span>
+          <h2 id="contact-h">Un besoin d'IA ou d'automatisation ? Parlons-en.</h2>
+          <p>Missions freelance en full remote (déplacement ponctuel possible selon le projet). Sous-traitance pour agences bienvenue. Réponse rapide.</p>
+          <div class="contact-grid">
+            <a class="cc primary" href="mailto:linke.henri@proton.me"><span class="ic" aria-hidden="true">✉</span> linke.henri@proton.me</a>
+            <a class="cc" href="tel:+33783777171"><span class="ic" aria-hidden="true">☎</span> +33 7 83 77 71 71</a>
+            <a class="cc" href="https://www.linkedin.com/in/hlinke" target="_blank" rel="noopener"><span class="ic" aria-hidden="true">in</span> linkedin.com/in/hlinke</a>
+          </div>
+          <p class="loc">🌍 Full remote · Français natif · Anglais professionnel</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap foot-inner">
+    <span>© <span id="yr">2026</span> Henri Linke — Ingénieur IA freelance</span>
+    <span>Conçu et codé à la main.</span>
+  </div>
+</footer>
+
+<script>
+  // year
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  // nav border on scroll
+  const nav = document.getElementById('nav');
+  const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 8);
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  // ferme le menu mobile après navigation vers une ancre
+  const navMenu = document.getElementById('navMenu');
+  if (navMenu) {
+    navMenu.querySelectorAll('.nav-menu-panel a').forEach((a) =>
+      a.addEventListener('click', () => navMenu.removeAttribute('open')));
+  }
+
+  // reveal on scroll (progressive enhancement; content visible without JS)
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const items = document.querySelectorAll('.reveal');
+  if (prefersReduced || !('IntersectionObserver' in window)) {
+    items.forEach(el => el.classList.add('in'));
+  } else {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    items.forEach(el => io.observe(el));
+    // failsafe : ne jamais laisser de contenu masqué si l'observer ne se déclenche pas
+    setTimeout(() => items.forEach(el => el.classList.add('in')), 1600);
+  }
+</script>
+</body>
+</html>
