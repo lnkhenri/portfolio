@@ -4,5 +4,11 @@ Thumbs.db
 *~
 *.swp
 
+# IDE
+.idea/
+
 # Artefacts d'outils locaux
 .playwright-mcp/
+
+# Notes de travail internes (non publiées sur le site)
+tasks/
