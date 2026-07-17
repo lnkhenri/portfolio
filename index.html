@@ -140,6 +140,21 @@
   .btn.ghost { background: transparent; color: var(--ink); border: 1.5px solid var(--line); box-shadow: none; }
   .btn.ghost:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
 
+  /* bouton CV : langage « fichier » — bords quasi carrés + accent, distinct des pilules de navigation */
+  .btn.cv {
+    border-radius: 9px;
+    background: var(--accent-wash); color: var(--accent);
+    border: 1.5px solid color-mix(in srgb, var(--accent) 45%, transparent);
+    box-shadow: none;
+  }
+  .btn.cv:hover { background: var(--accent); color: #fff; border-color: var(--accent); transform: translateY(-2px); box-shadow: 0 10px 24px -8px color-mix(in srgb, var(--accent) 70%, transparent); }
+  .ftag {
+    font-family: var(--font-mono); font-size: 0.66rem; font-weight: 700; letter-spacing: 0.08em;
+    background: var(--accent); color: #fff;
+    padding: 0.14rem 0.4rem; border-radius: 5px; line-height: 1.4;
+  }
+  .btn.cv:hover .ftag { background: #fff; color: var(--accent); }
+
   /* menu mobile : disclosure natif (fonctionne sans JS) */
   .nav-menu { display: none; position: relative; }
   .nav-menu summary { list-style: none; cursor: pointer; display: inline-flex; align-items: center; gap: 0.55rem; font-size: 0.95rem; font-weight: 600; color: var(--ink); padding: 0.5rem 0.3rem; }
@@ -263,6 +278,10 @@
   .cc.primary { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 600; box-shadow: 0 6px 20px -6px color-mix(in srgb, var(--accent) 70%, transparent); }
   .cc.primary:hover { background: var(--accent-bright); border-color: var(--accent-bright); }
   .cc.primary .ic { color: #fff; }
+  /* bouton CV sur la bande sombre : chip claire quasi carrée, immédiatement repérable */
+  .cc.cv { border-radius: 9px; background: var(--accent-wash); border-color: var(--accent-bright); color: #17150f; font-weight: 600; }
+  .cc.cv:hover { background: #fff; border-color: #fff; transform: translateY(-2px); }
+  .cc.cv .ic { color: var(--accent); }
   .contact .loc { margin-top: 1.8rem; font-size: 0.9rem; color: #9a9182; }
   .contact-body { display: grid; grid-template-columns: auto 1fr; column-gap: clamp(1.5rem, 4vw, 3.6rem); row-gap: clamp(1.8rem, 1rem + 2vw, 2.8rem); align-items: center; }
   .contact-actions { grid-column: 1 / -1; }
@@ -323,7 +342,7 @@
       <p class="lead reveal">Conseil, spécification et développement : agents IA, RAG & LLM, automatisations, data — et applications Python. De la spec à la prod, en autonomie.</p>
       <div class="hero-cta reveal">
         <a class="btn" href="#cases">Voir mes réalisations</a>
-        <a class="btn ghost" href="assets/CV_Henri_Linke_FR.pdf" download>Télécharger mon CV (PDF)</a>
+        <a class="btn cv" href="assets/CV_Henri_Linke_FR.pdf" download><span aria-hidden="true">↓</span> Télécharger mon CV <span class="ftag" aria-hidden="true">PDF</span></a>
       </div>
       <div class="hero-meta reveal">
         <div><span class="k">4 ans</span><span class="v">d'expérience IA & Data</span></div>
@@ -567,7 +586,7 @@
               <a class="cc primary" href="mailto:linke.henri@proton.me"><span class="ic" aria-hidden="true">✉</span> linke.henri@proton.me</a>
               <a class="cc" href="https://www.linkedin.com/in/hlinke" target="_blank" rel="noopener"><span class="ic" aria-hidden="true">in</span> linkedin.com/in/hlinke</a>
               <a class="cc" href="tel:+33783777171"><span class="ic" aria-hidden="true">☎</span> +33 7 83 77 71 71</a>
-              <a class="cc" href="assets/CV_Henri_Linke_FR.pdf" download><span class="ic" aria-hidden="true">↓</span> Télécharger mon CV (PDF)</a>
+              <a class="cc cv" href="assets/CV_Henri_Linke_FR.pdf" download><span class="ic" aria-hidden="true">↓</span> Télécharger mon CV <span class="ftag" aria-hidden="true">PDF</span></a>
             </div>
             <p class="loc">🌍 Basé en Bretagne · mobile France · Français natif · Anglais professionnel</p>
           </div>
