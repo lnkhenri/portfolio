@@ -21,34 +21,21 @@ Conçu pour être publié gratuitement.
 - 1 étude de cas pointe vers le live (support.kerawen.com) avec badge « En ligne ».
 - Les captures s'intègrent toutes dans le format `figure.media`.
 
-## Option A — GitHub Pages (recommandé, gratuit)
-1. Crée un dépôt GitHub **public**, ex. `portfolio` (ou `lnkhenri.github.io` pour l'avoir à la racine).
-2. Pousse le contenu de ce dossier (`index.html` + `README.md`) à la racine du dépôt :
-   ```bash
-   cd portfolio
-   git init && git add . && git commit -m "Portfolio"
-   git branch -M main
-   git remote add origin git@github.com:lnkhenri/portfolio.git
-   git push -u origin main
-   ```
-3. GitHub → dépôt → **Settings → Pages** → *Source : Deploy from a branch* → branche `main`, dossier `/ (root)` → Save.
-4. Ton site est en ligne sous ~1 min à :
-   - `https://lnkhenri.github.io/portfolio/`  (dépôt `portfolio`)
-   - `https://lnkhenri.github.io/`  (dépôt `lnkhenri.github.io`)
+## Déploiement — GitHub Pages
 
-## Option B — Netlify / Cloudflare Pages (glisser-déposer, encore plus simple)
-- **Netlify** : https://app.netlify.com/drop → glisse le dossier `portfolio/` → URL en ligne immédiate.
-- **Cloudflare Pages** : créer un projet → connecter le dépôt GitHub → build command vide, output `/`.
+Le site est publié depuis ce dépôt, branche `main`, dossier `/` (racine).
 
-### En-têtes HTTP (`_headers`)
-Le fichier `_headers` pose des en-têtes de **sécurité** (CSP, HSTS, `X-Content-Type-Options`, `Referrer-Policy`, `Permissions-Policy`) et un **cache long** sur `/assets/*`. Il est lu automatiquement par **Netlify** et **Cloudflare Pages**. **GitHub Pages l'ignore** (il ne sait pas poser d'en-têtes custom) — c'est l'une des raisons de préférer Netlify/Cloudflare. Le fichier `.nojekyll` évite tout traitement Jekyll côté GitHub Pages.
+- URL : **https://lnkhenri.github.io/portfolio/**
+- Version anglaise : **https://lnkhenri.github.io/portfolio/en/**
+
+Sur un compte GitHub **gratuit**, Pages ne fonctionne que si le dépôt est **public**. Le passer en privé coupe le site (le plan Pro permet Pages sur un dépôt privé).
+
+Le fichier `.nojekyll` est là pour que GitHub Pages serve les fichiers tels quels, sans passer par Jekyll.
 
 ## Domaine personnalisé (optionnel, ~10-12 €/an)
-Un domaine type `henri-linke.fr` ou `henrilinke.dev` fait beaucoup plus pro qu'une URL `github.io`.
-GitHub Pages, Netlify et Cloudflare permettent tous de brancher un domaine perso gratuitement
-(tu paies seulement le nom de domaine). À faire une fois le site validé.
 
-> ⚠️ **Une fois l'URL fixée** : dans `index.html`, ajouter `<link rel="canonical">` + `<meta property="og:url">`, et passer `og:image` / `twitter:image` en URL **absolue** (`https://ton-domaine/assets/og-cover.png`) pour un aperçu de lien fiable sur toutes les plateformes. Un commentaire le rappelle déjà dans le `<head>`.
+Un domaine type `henri-linke.fr` ou `henrilinke.dev` se branche sur GitHub Pages (Settings → Pages → Custom domain). Une fois l’URL changée, mettre à jour `canonical`, `og:url` et les URLs absolues `og:image` / `twitter:image` dans `index.html` et `en/index.html`.
 
 ## Modifier le site
-Tout est dans `index.html` (HTML + CSS + un peu de JS, dans un seul fichier), avec un miroir anglais dans `en/index.html` à maintenir en parallèle. Édite, commit, push : GitHub Pages redéploie automatiquement.
+
+Tout est dans `index.html` (HTML + CSS + un peu de JS), avec un miroir anglais dans `en/index.html` à tenir à jour en parallèle. Édite, commit, push : GitHub Pages redéploie tout seul.
